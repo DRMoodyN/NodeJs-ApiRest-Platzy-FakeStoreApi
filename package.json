@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-apirest-platzy-fakestoreapi",
+  "version": "1.0.0",
+  "description": "// Inicialización de un archivo package.json\r npm init -y",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRMoodyN/NodeJs-ApiRest-Platzy-FakeStoreApi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DRMoodyN/NodeJs-ApiRest-Platzy-FakeStoreApi/issues"
+  },
+  "homepage": "https://github.com/DRMoodyN/NodeJs-ApiRest-Platzy-FakeStoreApi#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
