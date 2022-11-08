@@ -1,7 +1,9 @@
 const express = require('express')
 const routeCategoryApiV1 = require("./src/routes/categoryRoute")
+const routeProductApiV1 = require('./src/routes/productRoute')
 const { env } = require("./src/configurations/env")
 const { handlerErrorGlobal } = require('./src/middleware/errorHandler')
+
 
 // Setting
 const app = express()
@@ -11,6 +13,7 @@ const app = express()
 app.use(express.json())
 
 routeCategoryApiV1(app)
+routeProductApiV1(app)
 
 app.use(handlerErrorGlobal)
 

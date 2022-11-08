@@ -23,8 +23,16 @@ async function put(route, updateCategory) {
     return response;
 }
 
+async function deletefisic(route) {
+    let response = await fetch(env.URL + route, {
+        method: 'DELETE'
+    })
+    return response;
+}
+
 module.exports = {
     get,
     post,
-    put
+    put,
+    deletefisic
 }
