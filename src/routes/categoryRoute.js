@@ -16,8 +16,8 @@ function routeCategoryApiV1(app) {
         , validateHandler(Create, 'body')
         , category.update)
 
-    routes.get("/categories", category.getAll)
-    routes.get("/categories/:id/products", category.getIdCategoryProduct)
+    routes.get("/categories", category.getAll);
+    routes.get("/categories/:id/products", validateHandler(Id, 'params'), category.getIdCategoryProduct);
 }
 
 module.exports = routeCategoryApiV1

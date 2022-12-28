@@ -1,14 +1,14 @@
 const fetch = require("node-fetch");
 require("dotenv").config({ path: './.env' });
 
-const env = process.env.API_FAKE_PLATZY;
+const API_URL = process.env.API_FAKE_PLATZY;
 
 async function get(route) {
-    return await fetch(env + route)
+    return await fetch(API_URL + route)
 }
 
 async function post(route, create) {
-    let response = await fetch(env.URL + route, {
+    let response = await fetch(API_URL + route, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(create)
@@ -17,7 +17,7 @@ async function post(route, create) {
 }
 
 async function put(route, updateCategory) {
-    let response = await fetch(env.URL + route, {
+    let response = await fetch(API_URL + route, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updateCategory)
@@ -26,7 +26,7 @@ async function put(route, updateCategory) {
 }
 
 async function deletefisic(route) {
-    let response = await fetch(env.URL + route, {
+    let response = await fetch(API_URL + route, {
         method: 'DELETE'
     })
     return response;

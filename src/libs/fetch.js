@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-// const { env } = require("../configurations/env")
 const env = 'https://api.escuelajs.co/api/v1'
 
 async function get(route) {

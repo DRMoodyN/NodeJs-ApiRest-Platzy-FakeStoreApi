@@ -10,8 +10,8 @@ async function getId(req, res, next) {
   return await CategoryService.getId(req, res, next)
 }
 
-async function getIdCategoryProduct(req, res) {
-  return await CategoryService.getIdCategoryProduct(req, res, next)
+async function getIdCategoryProduct(req, res, next) {
+  return await CategoryService.getCategoryIdProduct(req, res, next)
 }
 
 // https://api.escuelajs.co/api/v1/categories

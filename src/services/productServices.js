@@ -9,7 +9,7 @@ class ProductService {
         let { offset = 1, limit = 12 } = req.query;
         try {
             // response = await fetch.get(route + `?offset=${offset}&limit=${limit}`)
-            response = await axios.Get(route + `?offset=${offset}&limit=${limit}`);
+            response = await axios.getAll(route + `?offset=${offset}&limit=${limit}`);
 
             if (response.status < 200 || response.status > 299) {
                 throw new Error();
