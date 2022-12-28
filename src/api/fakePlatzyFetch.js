@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
-// const { env } = require("../configurations/env")
-const env = 'https://api.escuelajs.co/api/v1'
+require("dotenv").config({ path: './.env' });
+
+const env = process.env.API_FAKE_PLATZY;
 
 async function get(route) {
     return await fetch(env + route)

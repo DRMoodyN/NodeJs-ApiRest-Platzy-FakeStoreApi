@@ -24,6 +24,7 @@ npm i joi
 
 // Consumir un api
 npm install node-fetch@2
+npm install axios
 
 // Estructura de carpetas
 controllers ,libs ,middleware ,models ,routes ,schemas ,services

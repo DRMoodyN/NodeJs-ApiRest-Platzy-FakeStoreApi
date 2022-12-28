@@ -1,18 +1,23 @@
 const fetch = require("../libs/fetch.js")
+const axios = require('../api/fakePlatzyAxios.js')
 const route = "/products"
 
 class ProductService {
 
     static async getAll(req, res, next) {
         let response
-        let { offset = 0, limit = 10 } = req.query;
+        let { offset = 1, limit = 12 } = req.query;
         try {
-            response = await fetch.get(route + `?offset=${offset}&limit=${limit}`)
+            // response = await fetch.get(route + `?offset=${offset}&limit=${limit}`)
+            response = await axios.Get(route + `?offset=${offset}&limit=${limit}`);
+
             if (response.status < 200 || response.status > 299) {
                 throw new Error();
             }
+
             res.status(response.status)
-            res.json(await response.json());
+            // res.json(await response.json());
+            res.json(response.data)
         } catch {
             next({ status: response.status, message: `API GetAll${route}/` })
         }
