@@ -1,5 +1,6 @@
 const fetch = require("../libs/fetch.js")
-const axios = require('../api/fakePlatzyAxios.js')
+const fakePlatzyFetch = require("../api/fakePlatzyFetch.js")
+const fakePlatzyAxios = require("../api/fakePlatzyAxios.js")
 const route = "/products"
 
 class ProductService {
@@ -9,7 +10,7 @@ class ProductService {
         let { offset = 1, limit = 12 } = req.query;
         try {
             // response = await fetch.get(route + `?offset=${offset}&limit=${limit}`)
-            response = await axios.getAll(route + `?offset=${offset}&limit=${limit}`);
+            response = await fakePlatzyAxios.getAll(route + `?offset=${offset}&limit=${limit}`);
 
             if (response.status < 200 || response.status > 299) {
                 throw new Error();
@@ -25,16 +26,18 @@ class ProductService {
 
     static async create(req, res, next) {
         let response;
-        const create = getCreate(req)
-
+        const create = getCreate(req);
+        console.log(req)
         try {
-            response = await fetch.post(`${route}/`, create)
-            console.log(response)
+            // response = await fetch.post(`${route}/`, create)
+            response = await axios.post(`${route}/`, create)
+            console.log(data)
             if (response.status < 200 || response.status > 299) {
                 throw new Error();
             }
             res.status(response.status)
             res.json(await response.json());
+            // res.json(response.data)
         } catch {
             next({ status: response.status, message: `API Create${route}/` })
         }
@@ -45,15 +48,20 @@ class ProductService {
         const create = getCreate(req)
         const id = req.params.id
         try {
-            response = await fetch.put(`${route}/${id}`, create)
-            console.log(response)
-            if (response.status < 200 || response.status > 299) {
+            // response = await fetch.put(`${route}/${id}`, create)
+            response = await fakePlatzyAxios.put(`${route}/${id}`, create);
+
+            if (response.status < 200 || response.status > 299 || response === null) {
                 throw new Error();
             }
             res.status(response.status)
-            res.json(await response.json());
+            // res.json(await response.json());
+            res.json(response.data)
         } catch {
-            next({ status: response.status, message: `API Update${route}/` })
+            if (response == "OK") {
+                next({ status: response.status, message: `API Update${route}/` })
+            }
+            next({ status: 500, message: "Error del servidor" })
         }
     }
 
@@ -61,14 +69,18 @@ class ProductService {
         let response;
         const id = req.params.id
         try {
-            response = await fetch.get(route + "/" + id);
+            // response = await fetch.get(route + "/" + id);
+            response = await fakePlatzyAxios.getAll(route + "/" + id);
+
             if (response.status < 200 || response.status > 299) {
                 throw new Error();
             }
             res.status(response.status)
-            res.json(await response.json());
+            // res.json(await response.json());
+            res.json(response.data)
         } catch {
-            next({ status: response.status, message: `API GetId${route}/` })
+            if (response)
+                next({ status: response.status, message: `API GetId${route}/` })
         }
     }
 

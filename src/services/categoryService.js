@@ -59,6 +59,7 @@ class CategoryService {
     try {
       // response = await fetch.get(route);
       response = await fakePlatzyAxios.getAll(route)
+      console.log(response)
       if (response.status < 200 || response.status > 299) {
         throw new Error(`API GET/Categories ${response.status}`);
       }
